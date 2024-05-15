@@ -11,12 +11,12 @@ namespace la_mia_pizzeria_static.Models
 
         public string? PizzaImg { get; set; }
 
-        public decimal? Price { get; set; }
+        public float Price { get; set; }
 
 
         public Pizza() { }
 
-        public Pizza(string name, string description, string pizzaImg, decimal price)
+        public Pizza(string name, string description, string pizzaImg, float price)
         {
             this.Name = name;
             this.Description = description;
