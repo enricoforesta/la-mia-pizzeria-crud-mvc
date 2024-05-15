@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    List<Pizza> listaPizza = new List<Pizza>();
+
+
+    listaPizza.Add(new Pizza("Pizza Capricciosa", "Molto Buona", "~/img/PizzaCapricciosa.jpg", 10.00M));
+    listaPizza.Add(new Pizza("Pizza Margherita", "Molto Buona", "~/img/PizzaMargherita.jpg", 8.50M));
+    listaPizza.Add(new Pizza("Pizza Fritta", "Molto Buona", "~/img/PizzaFritta.jpeg", 25.98M));
+    listaPizza.Add(new Pizza("Pizza Marinara", "Molto Buona", "~/img/PizzaMarinara.jpg", 9.50M));
+    listaPizza.Add(new Pizza("Pizza Napoletana", "Molto Buona", "~/img/PizzaNapoletana.jpg", 14.00M));
+    listaPizza.Add(new Pizza("Pizza Patate e Salsiccia", "Molto Buona", "~/img/PizzaPatateSalsiccia.jpg", 12.50M));
+}
+
+<div class="text-center container-xxl">
+    <h1 style="color: var(--my-text-color-primary);">I Nostri Prodotti</h1>
+    <table class="table m-5 border-0">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Prezzo</th>
+                <th scope="col">Immagine</th>
+            </tr>
+        </thead>
+        <tbody style="vertical-align:unset;">
+            @{
+                int i = 1;
+                foreach (var item in listaPizza)
+                {
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price€</td>
+                        <td>
+                            <img style="width: 150px; height: 100px" src=@Url.Content(item.PizzaImg) alt=@item.Name>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
