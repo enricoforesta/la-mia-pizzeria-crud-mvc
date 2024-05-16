@@ -35,7 +35,7 @@
                             <td>
                                 <img style="width: 150px; height: 100px" src=@Url.Content(item.PizzaImg) alt=@item.Name>
                             </td>
-                            <td> <a class="text-primary" href="@Url.Action("Details", "Pizza", new Pizza() { Id=item.Id} )"> Dettagli </a> </td>
+                            <td> <a class="text-primary" href="@Url.Action("Details", "Pizza", new { id=item.Id} )"> Dettagli </a> </td>
                         </tr>
                         i++;
                     }

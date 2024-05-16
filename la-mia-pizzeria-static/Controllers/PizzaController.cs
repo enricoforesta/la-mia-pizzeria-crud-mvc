@@ -6,18 +6,17 @@ namespace la_mia_pizzeria_static.Controllers
 {
     public class PizzaController : Controller
     {
-        public  PizzaContext _dbContext = new PizzaContext();
 
         public IActionResult Index()
         {
-            var pizzas = _dbContext.Pizza?.ToList();
-            return View(pizzas);
+           
+            return View(PizzaManager.GetAllPizze());
         }
 
         public IActionResult Details(int id)
         {
-            var pizza = _dbContext.Pizza?.FirstOrDefault(p => p.Id == id);
-            return View(pizza);
+           
+            return View(PizzaManager.GetIdPizze(id));
         }
 
     }
