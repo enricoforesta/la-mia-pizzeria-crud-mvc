@@ -1,5 +1,9 @@
 ﻿@model Pizza
 
+<div class="text-end">
+    <a href="@Url.Action("index", "Pizza")" class="fs-2 me-md-2 text-danger"><i class="bi bi-arrow-left"></i></a>
+</div>
+
 <div class="text-center container-xxl">
     <form asp-controller="Pizza" asp-action="Update" asp-route-id="@Model.Id" method="post">
         @Html.AntiForgeryToken()

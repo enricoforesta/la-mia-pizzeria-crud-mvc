@@ -1,5 +1,9 @@
 ﻿@model Pizza
 
+<div class="text-end">
+    <a href="@Url.Action("index", "Pizza")" class="fs-2 me-md-2 text-danger"><i class="bi bi-arrow-left"></i></a>
+</div>
+
 <div class="text-center container-xxl">
     <form asp-controller="Pizza" asp-action="Create" method="post">
         @Html.AntiForgeryToken()
@@ -15,11 +19,11 @@
         </div>
         <div class="m-5">
             <label for="Price" class="form-label"><strong>Prezzo Prodotto:</strong></label>
-            <input asp-for="Price"  step="0.01" class="form-control w-50 my-0 mx-auto" id="Price" placeholder="Prezzo">
+            <input asp-for="Price" step="0.01" class="form-control w-50 my-0 mx-auto" id="Price" placeholder="Prezzo">
             <span asp-validation-for="Price" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
         </div>
         <div class="text-end">
-            <input type="submit" class="btn btn-primary me-md-2 mb-5" value="Crea Prodotto">
+            <input type="submit" class="btn btn-primary me-2 mb-5" value="Crea Prodotto">
         </div>
     </form>
 </div>
