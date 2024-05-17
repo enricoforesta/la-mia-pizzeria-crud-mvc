@@ -16,7 +16,7 @@ namespace la_mia_pizzeria_static.Models
         public string? PizzaImg { get; set; }
 
         [Required(ErrorMessage = "Il prezzo è necessario")]
-        [Range(0, float.MaxValue, ErrorMessage = "Il prezzo deve essere maggiore o uguale a zero")]
+        [Range(0, float.MaxValue, ErrorMessage = "Il prezzo deve essere maggiore a zero")]
         public float Price { get; set; }
 
 

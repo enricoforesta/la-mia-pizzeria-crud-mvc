@@ -35,11 +35,7 @@ namespace la_mia_pizzeria_static.Controllers
                 return View("Create", data);
             }
 
-            using PizzaContext db = new PizzaContext();
-
-            var pizza = new Pizza(data.Name, data.Description, data.PizzaImg, data.Price);
-            db.Pizza.Add(pizza);
-            db.SaveChanges();
+           PizzaManager.InsertPizza(data);
             return RedirectToAction("Index");
         }
 

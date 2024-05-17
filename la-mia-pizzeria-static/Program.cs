@@ -38,6 +38,9 @@ namespace la_mia_pizzeria_static
 
 
 
+
+
+
             app.Run();
         }
     }
@@ -60,19 +63,19 @@ namespace la_mia_pizzeria_static
 
 
 
-            // Per 
-            //var defaultCulture = new CultureInfo("en-US");
-            //var localizationOptions = new RequestLocalizationOptions
-            //{
-            //    DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(defaultCulture),
-            //    SupportedCultures = new List<CultureInfo>
-            //    {
-            //        defaultCulture,
-            //    },
-            //    SupportedUICultures = new List<CultureInfo>
-            //    {
-            //        defaultCulture,
-            //    }
-            //};
+       
+           /* var defaultCulture = new CultureInfo("en-US");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(defaultCulture),
+                SupportedCultures = new List<CultureInfo>
+                {
+                    defaultCulture,
+                },
+                SupportedUICultures = new List<CultureInfo>
+               {
+                   defaultCulture,
+                }
+            };
 
-            //app.UseRequestLocalization(localizationOptions);
+            app.UseRequestLocalization(localizationOptions);*/
