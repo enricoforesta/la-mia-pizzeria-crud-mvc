@@ -1,5 +1,7 @@
 ﻿using la_mia_pizzeria_static.Models;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Threading.Tasks.Dataflow;
 
 namespace la_mia_pizzeria_static.Controllers
 {
@@ -24,8 +26,29 @@ namespace la_mia_pizzeria_static.Controllers
             using PizzaContext db = new PizzaContext();
 
             var pizza = new Pizza(data.Name, data.Description, data.PizzaImg, data.Price);
-            db.Pizza.Add(pizza);
+            db.Pizza?.Add(pizza);
             db.SaveChanges();
+        }
+        public static bool UpdatePizza(int id, string name, string description, float price)
+        {
+            using PizzaContext db = new PizzaContext();
+            var pizza = db.Pizza?.Find(id);
+            if (pizza == null) return false;
+            pizza.Name = name;
+            pizza.Description = description;
+            pizza.Price = price;
+            db.SaveChanges();
+            return true;
+        }
+
+        public static bool DeletePizza(int id)
+        {
+            using PizzaContext db = new PizzaContext();
+            var pizza = db.Pizza?.Find(id);
+            if (pizza == null) return false;
+            db.Pizza.Remove(pizza);
+            db.SaveChanges();
+            return true;
         }
     }
 }
