@@ -24,9 +24,7 @@ namespace la_mia_pizzeria_static.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            PizzaFormModel model = new PizzaFormModel();
-            model.Pizza = new Pizza();
-            model.Categories = PizzaManager.GetAllCategory();
+            PizzaFormModel model = new PizzaFormModel(new Pizza(), PizzaManager.GetAllCategory());
             return View(model);
         }
 
@@ -49,16 +47,18 @@ namespace la_mia_pizzeria_static.Controllers
         {
             var pizzaEdit = PizzaManager.GetIdPizze(id);
             if (pizzaEdit == null) return NotFound();
-            return View(pizzaEdit);
+            PizzaFormModel model = new PizzaFormModel(pizzaEdit, PizzaManager.GetAllCategory());
+
+            return View(model);
 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(int id,Pizza data)
+        public IActionResult Update(int id,PizzaFormModel data)
         {
             if (!ModelState.IsValid) return View("Update", data);
-            if(!PizzaManager.UpdatePizza(id, data.Name, data.Description, data.Price)) return NotFound();
+            if(!PizzaManager.UpdatePizza(id, data.Pizza?.Name, data.Pizza?.Description, data.Pizza.Price, data.Pizza?.CategoryId)) return NotFound();
             return RedirectToAction("Index");
         }
         [HttpPost]

@@ -41,7 +41,7 @@ namespace la_mia_pizzeria_static.Controllers
             db.Pizza?.Add(data);
             db.SaveChanges();
         }
-        public static bool UpdatePizza(int id, string name, string description, float price)
+        public static bool UpdatePizza(int id, string name, string description, float price, int? categoryId)
         {
             using PizzaContext db = new PizzaContext();
             var pizza = db.Pizza?.Find(id);
@@ -49,6 +49,7 @@ namespace la_mia_pizzeria_static.Controllers
             pizza.Name = name;
             pizza.Description = description;
             pizza.Price = price;
+            pizza.CategoryId = categoryId;
             db.SaveChanges();
             return true;
         }
