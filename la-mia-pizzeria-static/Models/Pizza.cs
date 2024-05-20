@@ -19,6 +19,8 @@ namespace la_mia_pizzeria_static.Models
         [Range(0, float.MaxValue, ErrorMessage = "Il prezzo deve essere maggiore a zero")]
         public float Price { get; set; }
 
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
 
         public Pizza() { }
 
@@ -28,6 +30,12 @@ namespace la_mia_pizzeria_static.Models
             this.Description = description;
             this.PizzaImg = pizzaImg;
             this.Price = price;
+        }
+
+        public string AllCategory()
+        {
+            if (Category == null) return "Nessuna categoria";
+            return Category.Name;
         }
     }
 }

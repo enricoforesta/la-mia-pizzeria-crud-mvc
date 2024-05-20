@@ -37,10 +37,6 @@ namespace la_mia_pizzeria_static
                 pattern: "{controller=Pizza}/{action=Index}/{id?}");
 
 
-
-
-
-
             app.Run();
         }
     }

@@ -8,6 +8,7 @@ namespace la_mia_pizzeria_static.Models
 
 
         public DbSet<Pizza>? Pizza { get; set; }
+        public DbSet<Category>? Category { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

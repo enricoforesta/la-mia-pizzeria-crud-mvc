@@ -16,26 +16,30 @@ namespace la_mia_pizzeria_static.Controllers
 
         public IActionResult Details(int id)
         {
-
-            return View(PizzaManager.GetIdPizze(id));
+            var Pizza = PizzaManager.GetIdPizze(id,true);
+            if (Pizza == null) return View("errore");
+            return View(Pizza);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            PizzaFormModel model = new PizzaFormModel();
+            model.Pizza = new Pizza();
+            model.Categories = PizzaManager.GetAllCategory();
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Pizza data)
+        public IActionResult Create(PizzaFormModel data)
         {
             if (!ModelState.IsValid)
             {
                 return View("Create", data);
             }
 
-            PizzaManager.InsertPizza(data);
+            PizzaManager.InsertPizza(data.Pizza);
             return RedirectToAction("Index");
         }
 
