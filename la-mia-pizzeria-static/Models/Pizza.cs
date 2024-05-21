@@ -40,5 +40,19 @@ namespace la_mia_pizzeria_static.Models
             if (Category == null) return "Nessuna categoria";
             return Category.Name;
         }
+        public string AllIngredient()
+        {
+            string result = "";
+            int i = 0;
+            if (Ingredients == null || Ingredients.Count == 0) return "Nessun ingrediente";
+            
+            foreach (var item in Ingredients)
+            {
+                result+= item.Name;
+                if (i < Ingredients.Count - 1) result += "-";
+                i++;
+            }
+            return result;
+        }
     }
 }

@@ -62,9 +62,10 @@ namespace la_mia_pizzeria_static.Controllers
             if (!ModelState.IsValid)
             {
                 data.Categories = PizzaManager.GetAllCategory();
+                data.Ingredients = PizzaManager.CreateIngredients();
                 return View("Update", data);
             }
-            if(!PizzaManager.UpdatePizza(id, data.Pizza?.Name, data.Pizza?.Description, data.Pizza.Price, data.Pizza?.CategoryId)) return NotFound();
+            if(!PizzaManager.UpdatePizza(id, data.Pizza?.Name, data.Pizza?.Description, data.Pizza.Price, data.Pizza?.CategoryId, data.SelectedIngredients)) return NotFound();
             return RedirectToAction("Index");
         }
         [HttpPost]

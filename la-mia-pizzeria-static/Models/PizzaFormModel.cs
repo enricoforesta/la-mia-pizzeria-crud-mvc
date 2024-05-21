@@ -11,7 +11,7 @@ namespace la_mia_pizzeria_static.Models
         public List<string> SelectedIngredients { get; set; }
         public PizzaFormModel() 
         {
-            SelectedIngredients = new List<string>();
+           
         }
 
         public PizzaFormModel(Pizza pizza, List<Category> category, List<SelectListItem> selectedIngredients) 
@@ -19,7 +19,7 @@ namespace la_mia_pizzeria_static.Models
             this.Pizza = pizza;
             this.Categories = category;
             this.Ingredients = selectedIngredients;
-            this.SelectedIngredients = new List<string>();
+            this.SelectedIngredients = pizza.Ingredients?.Select(i => i.Id.ToString()).ToList() ?? new List<string>();
         }
 
     }

@@ -35,13 +35,25 @@
             </select>
             <span asp-validation-for="Pizza.CategoryId" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
         </div>
-        <div class="m-5">
-            <label for="Price" class="form-label"><strong>Prezzo Prodotto:</strong></label>
-            <input asp-for="Pizza.Price" step="0.01" class="form-control w-50 my-0 mx-auto" id="Price" placeholder="Prezzo">
-            <span asp-validation-for="Pizza.Price" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+        <div class="mb-5">
+            <label class="form-label d-block" for="Ingredient"><strong> Ingredienti:</strong></label>
+            <div class="d-flex flex-wrap align-items-center justify-content-center gap-2">
+                @for (int i = 0; i < Model.Ingredients.Count; i++)
+                {
+
+                    <input type="checkbox" name="SelectedIngredients" value="@Model.Ingredients[i].Value"
+                           @(Model.SelectedIngredients.Contains(Model.Ingredients[i].Value) ? "checked" : "") />
+                    @Model.Ingredients[i].Text
+                }
+            </div>
         </div>
-        <div class="text-end">
-            <input type="submit" class="btn btn-primary me-md-2 mb-5" value="Aggiorna Prodotto">
-        </div>
+            <div class="m-5">
+                <label for="Price" class="form-label"><strong>Prezzo Prodotto:</strong></label>
+                <input asp-for="Pizza.Price" step="0.01" class="form-control w-50 my-0 mx-auto" id="Price" placeholder="Prezzo">
+                <span asp-validation-for="Pizza.Price" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+            </div>
+            <div class="text-end">
+                <input type="submit" class="btn btn-primary me-md-2 mb-5" value="Aggiorna Prodotto">
+            </div>
     </form>
 </div>
