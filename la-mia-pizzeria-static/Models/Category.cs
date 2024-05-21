@@ -11,14 +11,14 @@ namespace la_mia_pizzeria_static.Models
         [StringLength(40, ErrorMessage = "Il nome deve avere max 40 caratteri")]
         public string? Name { get; set; }
 
-        public List<Pizza>? pizzas { get; set; }
+        public List<Pizza>? Pizzas { get; set; }
 
         public Category() { }
 
         public Category(string name, List<Pizza> pizza)
         { 
             this.Name = name;
-            this.pizzas = pizza;
+            this.Pizzas = pizza;
         }
 
 

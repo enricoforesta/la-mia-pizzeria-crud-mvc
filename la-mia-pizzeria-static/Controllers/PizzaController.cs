@@ -34,6 +34,7 @@ namespace la_mia_pizzeria_static.Controllers
         {
             if (!ModelState.IsValid)
             {
+                data.Categories = PizzaManager.GetAllCategory();
                 return View("Create", data);
             }
 
@@ -57,7 +58,11 @@ namespace la_mia_pizzeria_static.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Update(int id,PizzaFormModel data)
         {
-            if (!ModelState.IsValid) return View("Update", data);
+            if (!ModelState.IsValid)
+            {
+                data.Categories = PizzaManager.GetAllCategory();
+                return View("Update", data);
+            }
             if(!PizzaManager.UpdatePizza(id, data.Pizza?.Name, data.Pizza?.Description, data.Pizza.Price, data.Pizza?.CategoryId)) return NotFound();
             return RedirectToAction("Index");
         }
