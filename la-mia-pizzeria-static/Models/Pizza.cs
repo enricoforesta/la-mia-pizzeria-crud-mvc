@@ -22,14 +22,17 @@ namespace la_mia_pizzeria_static.Models
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
 
+        public List<Ingredient>? Ingredients { get; set; }
+
         public Pizza() { }
 
-        public Pizza(string name, string description, string pizzaImg, float price)
+        public Pizza(string name, string description, string pizzaImg, float price, List<Ingredient> ingredients)
         {
             this.Name = name;
             this.Description = description;
             this.PizzaImg = pizzaImg;
             this.Price = price;
+            this.Ingredients = ingredients;
         }
 
         public string AllCategory()

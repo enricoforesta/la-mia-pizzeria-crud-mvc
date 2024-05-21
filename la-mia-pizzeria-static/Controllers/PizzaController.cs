@@ -24,7 +24,7 @@ namespace la_mia_pizzeria_static.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            PizzaFormModel model = new PizzaFormModel(new Pizza(), PizzaManager.GetAllCategory());
+            PizzaFormModel model = new PizzaFormModel(new Pizza(), PizzaManager.GetAllCategory(), PizzaManager.CreateIngredients());
             return View(model);
         }
 
@@ -35,10 +35,11 @@ namespace la_mia_pizzeria_static.Controllers
             if (!ModelState.IsValid)
             {
                 data.Categories = PizzaManager.GetAllCategory();
+                data.Ingredients = PizzaManager.CreateIngredients();
                 return View("Create", data);
             }
 
-            PizzaManager.InsertPizza(data.Pizza);
+            PizzaManager.InsertPizza(data.Pizza, data.SelectedIngredients);
             return RedirectToAction("Index");
         }
 
@@ -48,7 +49,7 @@ namespace la_mia_pizzeria_static.Controllers
         {
             var pizzaEdit = PizzaManager.GetIdPizze(id);
             if (pizzaEdit == null) return NotFound();
-            PizzaFormModel model = new PizzaFormModel(pizzaEdit, PizzaManager.GetAllCategory());
+            PizzaFormModel model = new PizzaFormModel(pizzaEdit, PizzaManager.GetAllCategory(), PizzaManager.CreateIngredients());
 
             return View(model);
 
