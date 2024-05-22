@@ -1,7 +1,8 @@
 using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using la_mia_pizzeria_static.Areas.Identity.Data;
+//using la_mia_pizzeria_static.Areas.Identity.Data;
+using la_mia_pizzeria_static.Models;
 
 namespace la_mia_pizzeria_static
 {
@@ -11,10 +12,10 @@ namespace la_mia_pizzeria_static
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<ProfileContext>();
+            builder.Services.AddDbContext<PizzaContext>();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ProfileContext>();
+                .AddEntityFrameworkStores<PizzaContext>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
