@@ -1,4 +1,7 @@
 using System.Globalization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using la_mia_pizzeria_static.Areas.Identity.Data;
 
 namespace la_mia_pizzeria_static
 {
@@ -7,6 +10,11 @@ namespace la_mia_pizzeria_static
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<ProfileContext>();
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ProfileContext>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -29,13 +37,13 @@ namespace la_mia_pizzeria_static
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Pizza}/{action=Index}/{id?}");
-
+            app.MapRazorPages();
 
             app.Run();
         }
@@ -59,19 +67,19 @@ namespace la_mia_pizzeria_static
 
 
 
-       
-           /* var defaultCulture = new CultureInfo("en-US");
-            var localizationOptions = new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(defaultCulture),
-                SupportedCultures = new List<CultureInfo>
-                {
-                    defaultCulture,
-                },
-                SupportedUICultures = new List<CultureInfo>
-               {
-                   defaultCulture,
-                }
-            };
 
-            app.UseRequestLocalization(localizationOptions);*/
+/* var defaultCulture = new CultureInfo("en-US");
+ var localizationOptions = new RequestLocalizationOptions
+ {
+     DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(defaultCulture),
+     SupportedCultures = new List<CultureInfo>
+     {
+         defaultCulture,
+     },
+     SupportedUICultures = new List<CultureInfo>
+    {
+        defaultCulture,
+     }
+ };
+
+ app.UseRequestLocalization(localizationOptions);*/
