@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using la_mia_pizzeria_static.Controllers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace la_mia_pizzeria_static.Models
 {
@@ -22,5 +23,16 @@ namespace la_mia_pizzeria_static.Models
             this.SelectedIngredients = pizza.Ingredients?.Select(i => i.Id.ToString()).ToList() ?? new List<string>();
         }
 
+        // Ho spostato la funzione qua perchè in PizzaManager sono funzioni collegate al DB.
+        public static List<SelectListItem> CreateIngredients()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            var ingredientFromDb = PizzaManager.GetAllIngredients();
+            foreach (Ingredient ingredient in ingredientFromDb)
+            {
+                list.Add(new SelectListItem(ingredient.Name, ingredient.Id.ToString()));
+            }
+            return list;
+        }
     }
 }

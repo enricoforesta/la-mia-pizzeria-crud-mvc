@@ -32,17 +32,7 @@ namespace la_mia_pizzeria_static.Controllers
             return ingredient;
         }
 
-        public static List<SelectListItem> CreateIngredients() 
-        {
-            using PizzaContext _dbContext = new PizzaContext();
-            List<SelectListItem> list = new List<SelectListItem>();
-            var ingredientFromDb = GetAllIngredients();
-            foreach(Ingredient ingredient in ingredientFromDb)
-            {
-                list.Add(new SelectListItem(ingredient.Name, ingredient.Id.ToString()));
-            }
-            return list;
-        }
+        
 
         public static Pizza GetIdPizze(int id, bool includeReferences = true)
         {

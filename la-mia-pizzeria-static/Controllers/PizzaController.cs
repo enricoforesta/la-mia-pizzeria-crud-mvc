@@ -24,7 +24,7 @@ namespace la_mia_pizzeria_static.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            PizzaFormModel model = new PizzaFormModel(new Pizza(), PizzaManager.GetAllCategory(), PizzaManager.CreateIngredients());
+            PizzaFormModel model = new PizzaFormModel(new Pizza(), PizzaManager.GetAllCategory(), PizzaFormModel.CreateIngredients());
             return View(model);
         }
 
@@ -35,7 +35,7 @@ namespace la_mia_pizzeria_static.Controllers
             if (!ModelState.IsValid)
             {
                 data.Categories = PizzaManager.GetAllCategory();
-                data.Ingredients = PizzaManager.CreateIngredients();
+                data.Ingredients = PizzaFormModel.CreateIngredients();
                 return View("Create", data);
             }
 
@@ -49,7 +49,7 @@ namespace la_mia_pizzeria_static.Controllers
         {
             var pizzaEdit = PizzaManager.GetIdPizze(id);
             if (pizzaEdit == null) return NotFound();
-            PizzaFormModel model = new PizzaFormModel(pizzaEdit, PizzaManager.GetAllCategory(), PizzaManager.CreateIngredients());
+            PizzaFormModel model = new PizzaFormModel(pizzaEdit, PizzaManager.GetAllCategory(), PizzaFormModel.CreateIngredients());
 
             return View(model);
 
@@ -62,7 +62,7 @@ namespace la_mia_pizzeria_static.Controllers
             if (!ModelState.IsValid)
             {
                 data.Categories = PizzaManager.GetAllCategory();
-                data.Ingredients = PizzaManager.CreateIngredients();
+                data.Ingredients = PizzaFormModel.CreateIngredients();
                 return View("Update", data);
             }
             if(!PizzaManager.UpdatePizza(id, data.Pizza?.Name, data.Pizza?.Description, data.Pizza.Price, data.Pizza?.CategoryId, data.SelectedIngredients)) return NotFound();
