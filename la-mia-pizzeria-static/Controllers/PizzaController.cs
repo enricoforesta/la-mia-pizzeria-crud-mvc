@@ -6,14 +6,18 @@ using System.Diagnostics;
 
 namespace la_mia_pizzeria_static.Controllers
 {
+    [Authorize]
     public class PizzaController : Controller
     {
+        [Authorize(Roles = "Admin,User")]
+        [HttpGet]
         public IActionResult Index()
         {
 
             return View(PizzaManager.GetAllPizze());
         }
-
+        [Authorize(Roles = "Admin,User")]
+        [HttpGet]
         public IActionResult Details(int id)
         {
             var Pizza = PizzaManager.GetIdPizze(id,true);
